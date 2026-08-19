@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashyfy — Sign In</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+  :root{
+    --cream:#F6F1E9;
+    --cream-dim:#EDE6D8;
+    --ink:#161412;
+    --ink-soft:#3A362F;
+    --gold:#0A0A0A;
+    --glow: 0 0 22px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+    --line:#D9D0BE;
+  }
+
+  *{box-sizing:border-box;}
+  html, body{ margin:0; padding:0; width:100%; }
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--ink);
+    min-height:100vh;
+    min-height:100dvh;
+  }
+
+  .app-shell{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+    min-height:100vh;
+    min-height:100dvh;
+    background:var(--ink);
+  }
+
+  .phone{
+    width:100%;
+    min-height:100vh;
+    min-height:100dvh;
+    background:var(--ink);
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Top brand zone */
+  .brand-zone{
+    background:var(--ink);
+    padding:32px 32px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .brand-zone::before{
+    content:"";
+    position:absolute;
+    top:-120px;
+    right:-100px;
+    width:280px;
+    height:280px;
+    border:1px solid rgba(246,241,233,0.08);
+    border-radius:50%;
+  }
+  .brand-zone::after{
+    content:"";
+    position:absolute;
+    top:-40px;
+    right:-40px;
+    width:280px;
+    height:280px;
+    border:1px solid rgba(246,241,233,0.06);
+    border-radius:50%;
+  }
+  .mark{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:20px;
+    color:var(--ink);
+    margin-bottom:20px;
+    box-shadow:var(--glow);
+  }
+  .brand-name{
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    font-size:22px;
+    color:var(--cream);
+    letter-spacing:0.2px;
+    margin:0;
+  }
+  .brand-name span{ color:var(--gold); }
+  .brand-sub{
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:rgba(246,241,233,0.5);
+    margin-top:2px;
+  }
+
+  /* Card */
+  .card{
+    background:var(--cream);
+    border-radius:28px;
+    margin:-48px 14px 24px;
+    padding:36px 28px 32px;
+    position:relative;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .eyebrow-icon{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+  }
+  .eyebrow-icon svg{ stroke:var(--ink); }
+
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:30px;
+    color:var(--ink);
+    margin:0 0 6px;
+  }
+  .lead{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin:0 0 30px;
+  }
+
+  label{
+    display:block;
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .field{ margin-bottom:20px; }
+  .input-wrap{
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:0 14px;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .input-wrap:focus-within{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(0,0,0,0.08);
+  }
+  .input-wrap svg{ flex-shrink:0; stroke:#8a8471; }
+  .input-wrap input{
+    border:0;
+    outline:0;
+    background:transparent;
+    width:100%;
+    padding:14px 10px;
+    font-size:15px;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+  }
+  .input-wrap input::placeholder{ color:#A9A28E; }
+  .toggle-eye{
+    cursor:pointer;
+    stroke:#A9A28E;
+  }
+
+  .row-end{
+    display:flex;
+    justify-content:flex-end;
+    margin:-6px 0 26px;
+  }
+  .row-end a{
+    font-size:13px;
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    border-bottom:1px solid var(--gold);
+    padding-bottom:1px;
+  }
+
+  .btn{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:16px;
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15.5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    cursor:pointer;
+    transition:transform .12s ease, background .15s ease, box-shadow .15s ease;
+    box-shadow:var(--glow);
+  }
+  .btn:hover{ background:#000; box-shadow:0 0 28px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.1); }
+  .btn:active{ transform:scale(0.98); }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:28px 0 24px;
+    color:#A9A28E;
+    font-size:12px;
+    letter-spacing:1px;
+  }
+  .divider::before,.divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .create{
+    text-align:center;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .create a{
+    color:var(--ink);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:1px solid var(--gold);
+  }
+
+  .foot-note{
+    text-align:center;
+    margin-top:36px;
+    font-size:11.5px;
+    color:#A9A28E;
+    letter-spacing:0.3px;
+  }
+
+  /* Reset Password Modal */
+  .overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(22,20,18,0.55);
+    backdrop-filter:blur(3px);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:50;
+  }
+  .overlay.open{ display:flex; }
+  .overlay.modal-center{
+    align-items:center;
+    padding:20px;
+  }
+  .overlay.modal-center .action-modal{
+    border-radius:22px;
+    max-height:85vh;
+    animation:popIn .2s ease;
+  }
+  @keyframes popIn{
+    from{ transform:scale(0.94); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+  }
+
+  .modal{
+    width:100%;
+    max-width:420px;
+    background:var(--cream);
+    border-radius:24px 24px 0 0;
+    padding:30px 28px 34px;
+    box-shadow:0 -8px 30px rgba(0,0,0,0.25);
+    animation:slideUp .25s ease;
+  }
+  @keyframes slideUp{
+    from{ transform:translateY(24px); opacity:0; }
+    to{ transform:translateY(0); opacity:1; }
+  }
+
+  .modal-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin-bottom:6px;
+  }
+  .modal-head h2{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:26px;
+    color:var(--ink);
+    margin:0;
+  }
+  .modal-close{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .modal-close svg{ stroke:var(--ink-soft); }
+
+  .modal-sub{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 24px;
+  }
+
+  .notice{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:#EFEBFA;
+    border:1px solid #D9D1F0;
+    border-radius:12px;
+    padding:14px 16px;
+    margin:22px 0 26px;
+  }
+  .notice svg{ flex-shrink:0; margin-top:1px; stroke:#5B4FCF; }
+  .notice p{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.5;
+    color:#4A4470;
+  }
+
+  .link-under{
+    background:none;
+    border:0;
+    padding:0;
+    cursor:pointer;
+    font-family:inherit;
+  }
+
+  /* Register screen */
+  #registerScreen{ display:none; }
+  #otpScreen{ display:none; }
+  #passwordScreen{ display:none; }
+  #reviewScreen{ display:none; }
+
+  .steps{
+    display:flex;
+    align-items:center;
+    padding:0 32px 40px;
+    gap:0;
+  }
+  .step{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+  .step-num{
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+  .step.active .step-num{
+    background:var(--gold);
+    color:var(--ink);
+  }
+  .step:not(.active) .step-num{
+    background:rgba(246,241,233,0.12);
+    color:rgba(246,241,233,0.55);
+  }
+  .step-label{
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .step.active .step-label{ color:var(--cream); }
+  .step:not(.active) .step-label{ color:rgba(246,241,233,0.5); }
+  .step-connector{
+    flex:1;
+    min-width:10px;
+    height:1px;
+    background:rgba(246,241,233,0.2);
+    margin:0 6px;
+  }
+  .steps{ padding-right:24px; padding-left:24px; }
+  .step-label{ font-size:12px; }
+
+  .step.done .step-num{
+    background:#3CA870;
+    color:#fff;
+  }
+  .step.done .step-label{ color:var(--cream); }
+
+  /* Notice bar (info) */
+  .info-bar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:26px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .info-bar svg{ flex-shrink:0; stroke:var(--gold); }
+  .info-bar b{ color:var(--ink); }
+
+  .otp-row{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .otp-row .input-wrap{ flex:1; }
+  .otp-timer{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:0 14px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .otp-timer svg{ stroke:var(--gold); }
+  .otp-expire{
+    text-align:center;
+    font-size:12.5px;
+    color:#A9A28E;
+    margin:0 0 26px;
+  }
+
+  .btn-row{
+    display:flex;
+    gap:12px;
+  }
+  .btn-back{
+    flex:0 0 34%;
+    background:#fff;
+    color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .btn-back:hover{ background:var(--cream-dim); }
+  .btn-verify{ flex:1; }
+
+  /* Toast */
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:24px;
+    transform:translateX(-50%);
+    width:calc(100% - 40px);
+    max-width:380px;
+    background:#fff;
+    border:1px solid #CDEBD9;
+    border-radius:14px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.15);
+    z-index:60;
+    animation:slideUp .25s ease;
+  }
+  .toast svg.check{ stroke:#3CA870; flex-shrink:0; }
+  .toast.error{ border-color:#F3C7C7; }
+  .toast.error svg.check{ stroke:#C25454; }
+  .toast.error span{ color:#C25454; font-weight:600; }
+  .toast span{
+    flex:1;
+    font-size:14px;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .toast .toast-close{
+    cursor:pointer;
+    stroke:#A9A28E;
+    flex-shrink:0;
+  }
+
+  /* Password strength */
+  .strength-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:10px 0 8px;
+  }
+  .strength-row span#strengthLabel{
+    font-weight:700;
+  }
+  .strength-bars{
+    display:flex;
+    gap:6px;
+    margin-bottom:18px;
+  }
+  .strength-bars i{
+    flex:1;
+    height:4px;
+    border-radius:3px;
+    background:var(--line);
+    display:block;
+  }
+  .checklist{
+    list-style:none;
+    padding:0;
+    margin:0 0 24px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .checklist li{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13.5px;
+    color:#A9A28E;
+    transition:color .15s ease;
+  }
+  .checklist li .dot{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#E4DECB;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:background .15s ease;
+  }
+  .checklist li .dot svg{ stroke:#fff; width:10px; height:10px; }
+  .checklist li.ok{ color:#3CA870; font-weight:500; }
+  .checklist li.ok .dot{ background:#3CA870; }
+
+  .match-note{
+    font-size:12.5px;
+    margin:8px 0 0;
+    display:none;
+    align-items:center;
+    gap:6px;
+  }
+  .match-note.show{ display:flex; }
+  .match-note.ok{ color:#3CA870; }
+  .match-note.bad{ color:#C25454; }
+
+  /* Review screen */
+  .review-box{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:6px 18px;
+    margin-bottom:22px;
+    background:#fff;
+  }
+  .review-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .review-row:last-child{ border-bottom:none; }
+  .review-row .rlabel{
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#A9A28E;
+  }
+  .review-row .rvalue{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:17px;
+    color:var(--ink);
+  }
+  .review-row .rvalue.verified{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:#3CA870;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .agree-box{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:26px;
+    cursor:pointer;
+  }
+  .agree-box input[type="checkbox"]{
+    -webkit-appearance:none;
+    appearance:none;
+    width:20px;
+    height:20px;
+    border-radius:6px;
+    border:1.5px solid #B7AF98;
+    background:#fff;
+    flex-shrink:0;
+    margin-top:1px;
+    cursor:pointer;
+    position:relative;
+  }
+  .agree-box input[type="checkbox"]:checked{
+    background:var(--ink);
+    border-color:var(--ink);
+  }
+  .agree-box input[type="checkbox"]:checked::after{
+    content:"";
+    position:absolute;
+    left:6px;
+    top:2px;
+    width:5px;
+    height:10px;
+    border:solid var(--cream);
+    border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+  .agree-box p{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .agree-box a{
+    color:var(--ink);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:1px solid var(--gold);
+  }
+  .btn-verify:disabled{
+    opacity:0.45;
+    cursor:not-allowed;
+  }
+
+  /* Dashboard */
+  #dashboardScreen{ display:none; }
+  .dash-body{
+    background:#000;
+    min-height:100vh;
+    min-height:100dvh;
+  }
+  .dash-header{
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  .dash-header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .icon-btn svg{ stroke:#fff; }
+  .dash-title{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:21px;
+    color:#fff;
+    margin:0;
+  }
+  .dash-header-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .theme-toggle{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:var(--cream-dim);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .theme-toggle svg{ stroke:var(--gold); fill:var(--gold); }
+  .avatar-chip{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+  }
+  .avatar-circle{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:14px;
+    flex-shrink:0;
+    box-shadow:var(--glow);
+  }
+  .avatar-chip svg{ stroke:#A9A28E; }
+
+  .avatar-wrap{ position:relative; }
+  .profile-menu{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:0 10px 28px rgba(0,0,0,0.15);
+    padding:6px;
+    min-width:150px;
+    display:none;
+    z-index:40;
+  }
+  .profile-menu.open{ display:block; }
+  .profile-menu-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 12px;
+    border-radius:9px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .profile-menu-item svg{ stroke:var(--ink-soft); flex-shrink:0; }
+  .profile-menu-item:hover{ background:var(--cream-dim); }
+  .profile-menu-item.danger{ color:#C25454; }
+  .profile-menu-item.danger svg{ stroke:#C25454; }
+
+  .dash-content{ padding:20px 18px 40px; }
+
+  .greet-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#3CA870;
+    margin-bottom:6px;
+  }
+  .greet-eyebrow svg{ stroke:#3CA870; }
+  .greet-title{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:24px;
+    color:var(--ink);
+    margin:0 0 18px;
+  }
+  .greet-title span{ color:var(--gold); }
+
+  .balance-card{
+    background:linear-gradient(135deg,#000000 0%, #0D0D0D 55%, #1A1A1A 100%);
+    box-shadow:0 0 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+    border-radius:22px;
+    padding:24px 22px;
+    color:var(--cream);
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .balance-card::after{
+    content:"";
+    position:absolute;
+    top:-60px;
+    right:-60px;
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    background:rgba(246,241,233,0.06);
+  }
+  .balance-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:18px;
+  }
+  .balance-label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:rgba(246,241,233,0.6);
+  }
+  .balance-label svg{ stroke:rgba(246,241,233,0.6); }
+  .premium-pill{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    background:rgba(246,241,233,0.14);
+    border:1px solid rgba(246,241,233,0.2);
+    border-radius:20px;
+    padding:5px 12px;
+    font-size:12px;
+    font-weight:600;
+  }
+  .premium-pill svg{ stroke:var(--gold); fill:var(--gold); }
+  .balance-amount{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:34px;
+    letter-spacing:-0.5px;
+    margin-bottom:20px;
+  }
+  .balance-divider{
+    height:1px;
+    background:rgba(246,241,233,0.15);
+    margin-bottom:16px;
+  }
+  .balance-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .balance-tile{
+    background:rgba(246,241,233,0.08);
+    border-radius:12px;
+    padding:10px 12px;
+  }
+  .balance-tile .btl{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:10.5px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:rgba(246,241,233,0.55);
+    margin-bottom:5px;
+  }
+  .balance-tile .btl svg{ stroke:rgba(246,241,233,0.55); width:12px; height:12px; }
+  .balance-tile .bval{
+    font-size:13.5px;
+    font-weight:600;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:24px;
+  }
+  .stat-card{
+    background:#111;
+    border:1px solid rgba(255,255,255,0.08);
+    border-top:3px solid var(--gold);
+    border-radius:16px;
+    padding:16px;
+  }
+  .stat-card.credit{ border-top-color:#5B7FD9; box-shadow:0 -2px 16px rgba(91,127,217,0.15); }
+  .stat-card.up{ border-top-color:#3CA870; box-shadow:0 -2px 16px rgba(60,168,112,0.15); }
+  .stat-card.down{ border-top-color:#E5484D; box-shadow:0 -2px 16px rgba(229,72,77,0.15); }
+  .stat-card.count{ border-top-color:#D9B84B; box-shadow:0 -2px 16px rgba(217,184,74,0.15); }
+  .stat-card.transfer{ border-top-color:#5B7FD9; box-shadow:0 -2px 16px rgba(91,127,217,0.15); }
+  .stat-icon{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:12px;
+  }
+  .stat-icon.credit{ background:rgba(91,127,217,0.15); }
+  .stat-icon.credit svg{ stroke:#7C9CFF; }
+  .stat-icon.up{ background:rgba(60,168,112,0.15); }
+  .stat-icon.up svg{ stroke:#3CA870; }
+  .stat-icon.down{ background:rgba(229,72,77,0.15); }
+  .stat-icon.down svg{ stroke:#E5484D; }
+  .stat-icon.count{ background:rgba(217,184,74,0.15); }
+  .stat-icon.count svg{ stroke:#D9B84B; }
+  .stat-icon.transfer{ background:rgba(91,127,217,0.15); }
+  .stat-icon.transfer svg{ stroke:#7C9CFF; }
+  .stat-icon.earn{ background:rgba(217,184,74,0.15); }
+  .stat-icon.earn svg{ stroke:#D9B84B; }
+  .stat-value{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:19px;
+    color:#fff;
+    margin-bottom:3px;
+  }
+  .stat-label{
+    font-size:12.5px;
+    color:rgba(255,255,255,0.45);
+  }
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .section-head svg{ stroke:var(--gold); }
+  .section-head h3{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--ink);
+    margin:0;
+    flex:1;
+  }
+  .section-head a{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--ink);
+    text-decoration:none;
+    background:var(--cream-dim);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+
+  .quick-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .quick-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px 10px;
+    text-align:center;
+  }
+  .quick-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    margin:0 auto 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .quick-icon svg{ stroke:#fff; }
+  .quick-icon.bank{ background:#2E7D5B; }
+  .quick-icon.pay{ background:#7C4FD9; }
+  .quick-icon.bot{ background:#D9822B; }
+  .quick-title{
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .quick-sub{
+    font-size:10.5px;
+    color:#A9A28E;
+  }
+
+  .txn-card{
+    background:transparent;
+    border:none;
+    border-radius:0;
+    overflow:visible;
+  }
+  .txn-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 4px;
+    border-bottom:1px dashed rgba(255,255,255,0.18);
+  }
+  .txn-row:last-child{ border-bottom:none; }
+  .txn-icon{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .txn-icon.in{ background:rgba(60,168,112,0.16); box-shadow:0 0 16px rgba(60,168,112,0.35); }
+  .txn-icon.in svg{ stroke:#3CA870; }
+  .txn-icon.out{ background:rgba(60,168,112,0.16); box-shadow:0 0 16px rgba(60,168,112,0.35); }
+  .txn-icon.out svg{ stroke:#3CA870; }
+  .txn-mid{ flex:1; min-width:0; }
+  .txn-title{
+    font-size:15px;
+    font-weight:700;
+    color:#fff;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .txn-sub{
+    font-size:12.5px;
+    color:rgba(255,255,255,0.45);
+    margin-top:3px;
+  }
+  .txn-right{ text-align:right; flex-shrink:0; }
+  .txn-amt{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:15px;
+    color:#fff;
+  }
+  .txn-amt.in{ color:#fff; }
+  .txn-amt.out{ color:#fff; }
+  .txn-status{
+    display:flex;
+    align-items:center;
+    gap:3px;
+    justify-content:flex-end;
+    font-size:10.5px;
+    font-weight:700;
+    color:#3CA870;
+    margin-top:3px;
+  }
+  .txn-status svg{ stroke:#3CA870; width:11px; height:11px; }
+
+  .txn-empty{
+    text-align:center;
+    padding:40px 20px;
+  }
+  .txn-empty-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.06);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 14px;
+  }
+  .txn-empty-icon svg{ stroke:#3CA870; }
+  .txn-empty p{ margin:0; }
+  .txn-empty .te-title{ font-weight:700; color:#fff; font-size:14.5px; margin-bottom:4px; }
+  .txn-empty .te-sub{ font-size:12.5px; color:rgba(255,255,255,0.4); }
+
+  /* Sidebar drawer */
+  .sidebar-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(22,20,18,0.5);
+    display:none;
+    z-index:70;
+  }
+  .sidebar-overlay.open{ display:block; }
+  .sidebar-panel{
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:78%;
+    max-width:300px;
+    background:#fff;
+    padding:22px 18px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:8px 0 24px rgba(0,0,0,0.15);
+    animation:slideIn .2s ease;
+  }
+  @keyframes slideIn{
+    from{ transform:translateX(-16px); opacity:0.6; }
+    to{ transform:translateX(0); opacity:1; }
+  }
+  .side-brand-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .side-brand-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .side-brand-left .mark{
+    width:34px; height:34px; border-radius:9px; font-size:15px; margin-bottom:0;
+  }
+  .side-brand-left b{
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    color:var(--ink);
+  }
+  .side-close{
+    width:30px; height:30px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--ink-soft);
+  }
+  .side-hr{ height:1px; background:var(--line); margin-bottom:20px; }
+  .side-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:#A9A28E;
+    margin:0 0 10px 4px;
+  }
+  .side-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 12px;
+    border-radius:10px;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    cursor:pointer;
+    margin-bottom:4px;
+    border-left:3px solid transparent;
+  }
+  .side-item svg{ stroke:#A9A28E; flex-shrink:0; }
+  .side-item.active{
+    color:var(--ink);
+    background:var(--cream-dim);
+    border-left-color:var(--gold);
+  }
+  .side-item.active svg{ stroke:var(--gold); }
+  .side-item.danger{ color:#C25454; }
+  .side-item.danger svg{ stroke:#C25454; }
+  .side-section{ margin-bottom:20px; }
+  .side-channel{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg,#000000,#1A1A1A);
+    box-shadow:var(--glow);
+    color:var(--cream);
+    padding:12px 14px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:14px;
+    cursor:pointer;
+  }
+  .side-channel svg{ stroke:var(--cream); }
+  .side-footer{
+    margin-top:auto;
+    text-align:center;
+    font-size:10.5px;
+    letter-spacing:1px;
+    color:#C9C2AD;
+    padding-top:16px;
+  }
+
+  /* Transactions screen */
+  #transactionsScreen{ display:none; }
+  #profileScreen{ display:none; }
+  .ledger-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .ledger-title{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:23px;
+    color:#fff;
+    margin:2px 0 0;
+  }
+  .ledger-title span{ color:#3CA870; }
+  .csv-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:rgba(60,168,112,0.15);
+    color:#3CA870;
+    border:none;
+    border-radius:20px;
+    padding:8px 14px;
+    font-size:12.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .csv-btn svg{ stroke:#3CA870; }
+
+  .filter-card{
+    background:#111;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:18px 16px;
+    margin-bottom:20px;
+  }
+  .pill-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .pill-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.06);
+    color:rgba(255,255,255,0.6);
+    border-radius:20px;
+    padding:8px 14px;
+    font-size:12.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .pill-btn svg{ stroke:rgba(255,255,255,0.6); }
+  .pill-btn.active{
+    background:#3CA870;
+    color:#fff;
+    border-color:#3CA870;
+    box-shadow:0 0 18px rgba(60,168,112,0.5);
+  }
+  .pill-btn.active svg{ stroke:#fff; }
+  .pill-btn.active.credit-c{ background:#5B7FD9; border-color:#5B7FD9; box-shadow:0 0 18px rgba(91,127,217,0.5); }
+  .search-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;
+    padding:13px 16px;
+    margin:12px 0;
+  }
+  .search-box svg{ stroke:rgba(255,255,255,0.4); flex-shrink:0; }
+  .search-box input{
+    border:0;
+    outline:0;
+    background:transparent;
+    width:100%;
+    font-size:14px;
+    color:#fff;
+    font-family:'Inter',sans-serif;
+  }
+  .search-box input::placeholder{ color:rgba(255,255,255,0.35); }
+  .filter-row2{
+    display:flex;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .sel-box{
+    flex:1;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:13px;
+    color:rgba(255,255,255,0.6);
+  }
+  .reset-btn{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:10px;
+    padding:10px 14px;
+    font-size:12.5px;
+    font-weight:700;
+    color:rgba(255,255,255,0.6);
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .reset-btn svg{ stroke:rgba(255,255,255,0.6); }
+  .filter-hr{ height:1px; background:rgba(255,255,255,0.08); margin:4px 0 16px; }
+  .summary-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .summary-item{ text-align:left; }
+  .summary-item .slabel{
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    margin-bottom:4px;
+  }
+  .summary-item .sval{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:18px;
+    color:#fff;
+  }
+  .summary-item .sval.credit{ color:#3CA870; }
+  .summary-item .sval.debit{ color:#E5484D; }
+
+  .list-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .list-head-left{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:16px;
+    color:#fff;
+  }
+  .list-head-left svg{ stroke:#3CA870; }
+  .showing-pill{
+    background:rgba(91,127,217,0.15);
+    color:#7C9CFF;
+    font-size:11.5px;
+    font-weight:700;
+    padding:5px 11px;
+    border-radius:20px;
+  }
+
+  .status-pill{
+    display:inline-flex; align-items:center; gap:4px;
+    padding:4px 10px; border-radius:12px;
+    font-size:10.5px; font-weight:700;
+  }
+  .status-pill.success{ background:#E7F5EE; color:#3CA870; }
+  .status-pill.pending{ background:#FBF1DF; color:var(--gold); }
+  .status-pill.failed{ background:#FBEAEA; color:#C25454; }
+  .status-pill svg{ width:10px; height:10px; }
+
+  .status-pill.flat{
+    background:transparent;
+    padding:0;
+    margin-top:5px;
+    font-size:12.5px;
+    font-weight:700;
+    text-shadow:0 0 12px currentColor;
+  }
+  .status-pill.flat.success{ color:#3CA870; }
+  .status-pill.flat.pending{ color:#D9B84B; }
+  .status-pill.flat.failed{ color:#E5484D; }
+  .status-pill.flat svg{ width:11px; height:11px; }
+
+  /* Action modals: Withdraw / Transfer / Bot Alert */
+  .action-modal{
+    width:100%;
+    max-width:400px;
+    background:var(--cream);
+    border-radius:20px 20px 0 0;
+    padding:20px 20px 22px;
+    box-shadow:0 -8px 30px rgba(0,0,0,0.25);
+    animation:slideUp .25s ease;
+    max-height:88vh;
+    overflow-y:auto;
+  }
+  .action-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:16px;
+  }
+  .action-head-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:17px;
+    color:var(--ink);
+  }
+  .action-head-title img{ width:20px; height:20px; }
+
+  .balance-display{
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    border-radius:12px;
+    text-align:center;
+    padding:12px;
+    margin-bottom:16px;
+  }
+  .balance-display .bd-label{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .balance-display .bd-amount{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:21px;
+    color:var(--ink);
+  }
+
+  .modal-field{ margin-bottom:14px; }
+  .modal-field label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .modal-input{
+    width:100%;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:11px;
+    padding:12px 14px;
+    font-size:14px;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    outline:0;
+  }
+  .modal-input:focus{ border-color:var(--gold); }
+  .modal-input::placeholder{ color:#A9A28E; }
+  .modal-input-icon{
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:11px;
+    padding:0 12px;
+  }
+  .modal-input-icon svg{ stroke:#8a8471; flex-shrink:0; }
+  .modal-input-icon input{
+    border:0; outline:0; background:transparent;
+    width:100%; padding:12px 8px; font-size:14px;
+    font-family:'Inter',sans-serif; color:var(--ink);
+  }
+  .modal-input-icon input::placeholder{ color:#A9A28E; }
+
+  .method-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .method-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    padding:12px 8px;
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+    cursor:pointer;
+    text-align:center;
+  }
+  .method-card svg{ width:18px; height:18px; stroke:var(--ink-soft); }
+  .method-card span{ font-size:12.5px; font-weight:600; color:var(--ink-soft); }
+  .method-card.active{ border-color:#4E7FE0; background:#EDF2FC; }
+  .method-card.active svg{ stroke:#4E7FE0; }
+  .method-card.active span{ color:#2A54A8; }
+  .method-card.locked{ opacity:0.55; cursor:not-allowed; }
+  .method-card.locked svg.lock-icon{ stroke:#A9A28E; }
+
+  .action-btn{
+    width:100%;
+    border:0;
+    border-radius:11px;
+    padding:14px;
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    cursor:pointer;
+    color:#fff;
+    margin-top:4px;
+  }
+  .action-btn.green{ background:#2E9F6E; }
+  .action-btn.green:hover{ background:#268A5E; }
+  .action-btn.blue{ background:#3D6FE0; }
+  .action-btn.blue:hover{ background:#2E5AC4; }
+  .action-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+
+  .min-note{
+    font-size:11px;
+    color:#A9A28E;
+    font-weight:500;
+  }
+
+  /* Bot alert modal specific */
+  .bot-emoji{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    background:#EEF1F5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin:2px auto 14px;
+  }
+  .bot-title{
+    text-align:center;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--ink);
+    margin:0 0 6px;
+  }
+  .bot-sub{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0 0 18px;
+  }
+  .telegram-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:#3D8EE0;
+    color:#fff;
+    border:0;
+    border-radius:11px;
+    padding:13px;
+    font-weight:700;
+    font-size:13.5px;
+    cursor:pointer;
+    margin-bottom:16px;
+  }
+  .telegram-btn:hover{ background:#2E78C4; }
+  .alert-list{
+    background:var(--cream-dim);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .alert-list .al-head{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .alert-list ul{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+  }
+  .alert-list li{
+    font-size:13px;
+    color:var(--ink);
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .alert-list li::before{
+    content:"";
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    flex-shrink:0;
+  }
+
+  /* Simplified single-card auth screens */
+  .auth-wrap{
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px 20px;
+    background:var(--cream-dim);
+  }
+  .auth-card{
+    width:100%;
+    max-width:380px;
+    background:#fff;
+    border-radius:22px;
+    padding:30px 26px;
+    border:1px solid var(--line);
+    box-shadow:0 12px 32px rgba(22,20,18,0.08);
+  }
+  .auth-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .auth-brand .mark{
+    width:32px;
+    height:32px;
+    font-size:14px;
+    border-radius:9px;
+    margin-bottom:0;
+  }
+  .auth-brand span{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--ink);
+  }
+</style>
+</head>
+<body>
+<div class="app-shell">
+<div class="phone" id="signinScreen">
+
+  <div class="brand-zone">
+    <div class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--cream)" stroke="var(--cream)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <p class="brand-name">CASHYFY</p>
+    <p class="brand-sub">Cashyfy Wallet</p>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>
+    </div>
+
+    <h1>Sign in</h1>
+    <p class="lead">Enter your details to access your account.</p>
+
+    <form onsubmit="return false;">
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <div class="input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          <input id="phone" type="tel" placeholder="10-digit phone number" maxlength="10" inputmode="numeric">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="pass">Password</label>
+        <div class="input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6"/><path d="M15.5 7.5L18 10"/><path d="M18 5l2.5 2.5"/></svg>
+          <input id="pass" type="password" placeholder="Enter your password">
+          <svg class="toggle-eye" id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="togglePass()"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+      </div>
+
+      <div class="row-end"><button type="button" class="link-under" style="color:var(--ink);font-size:13px;font-weight:600;border-bottom:1px solid var(--gold);" onclick="openReset()">Forgot password?</button></div>
+
+      <button class="btn" type="submit" onclick="doSignIn()">
+        Sign in
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<div class="phone" id="transactionsScreen">
+  <div class="dash-body" style="width:100%;">
+
+    <div class="dash-header">
+      <div class="dash-header-left">
+        <div class="icon-btn" onclick="openSidebar()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <p class="dash-title">Transactions</p>
+      </div>
+      <div class="dash-header-right">
+        <div class="theme-toggle">
+          <svg width="16" height="16" viewBox="0 0 24 24" stroke-width="0"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div class="avatar-wrap">
+          <div class="avatar-chip" onclick="toggleProfileMenu(this)">
+            <div class="avatar-circle" id="txnAvatarLetter">H</div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="profile-menu" id="profileMenuTxn">
+            <div class="profile-menu-item danger" onclick="doLogout()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Logout
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+      <div class="ledger-head">
+        <div>
+          <div class="greet-eyebrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            History
+          </div>
+          <h2 class="ledger-title">Transaction <span>Ledger</span></h2>
+        </div>
+        <button class="csv-btn" onclick="exportCsv()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          CSV
+        </button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card credit">
+          <div class="stat-icon credit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <div class="stat-value" id="statTotalCredit">₹960.01</div>
+          <div class="stat-label">Total Credit</div>
+        </div>
+        <div class="stat-card up">
+          <div class="stat-icon up"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="stat-value" id="statSuccessCount">131</div>
+          <div class="stat-label">Successful Txns</div>
+        </div>
+        <div class="stat-card count">
+          <div class="stat-icon count"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
+          <div class="stat-value" id="statTotalTxns">131</div>
+          <div class="stat-label">Total Transactions</div>
+        </div>
+        <div class="stat-card down">
+          <div class="stat-icon down"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+          <div class="stat-value" id="statTotalDebit">₹960.00</div>
+          <div class="stat-label">Total Debit</div>
+        </div>
+      </div>
+
+      <div class="filter-card">
+        <div class="pill-row">
+          <button class="pill-btn active" id="typeAll" onclick="setTypeFilter('all')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            All
+          </button>
+          <button class="pill-btn" id="typeCredit" onclick="setTypeFilter('credit')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+            Credit
+          </button>
+          <button class="pill-btn" id="typeDebit" onclick="setTypeFilter('debit')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            Debit
+          </button>
+        </div>
+        <div class="pill-row">
+          <button class="pill-btn active" id="statusSuccess" onclick="setStatusFilter('success')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            Success
+          </button>
+          <button class="pill-btn" id="statusPending" onclick="setStatusFilter('pending')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Pending
+          </button>
+          <button class="pill-btn" id="statusFailed" onclick="setStatusFilter('failed')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Failed
+          </button>
+        </div>
+
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="txnSearch" placeholder="Search by title, comment..." oninput="renderTxns()">
+        </div>
+
+        <div class="filter-row2">
+          <select class="sel-box" id="txnMonth" onchange="renderTxns()">
+            <option value="">All months</option>
+            <option value="2026-07">July 2026</option>
+            <option value="2026-04">April 2026</option>
+          </select>
+          <button class="reset-btn" onclick="resetFilters()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            Reset
+          </button>
+        </div>
+
+        <div class="filter-hr"></div>
+
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="slabel">Filtered Credit</div>
+            <div class="sval credit" id="filteredCredit">₹960.01</div>
+          </div>
+          <div class="summary-item">
+            <div class="slabel">Filtered Debit</div>
+            <div class="sval debit" id="filteredDebit">₹0.00</div>
+          </div>
+          <div class="summary-item">
+            <div class="slabel">Total Count</div>
+            <div class="sval" id="filteredCount" style="color:#fff;">131</div>
+          </div>
+          <div class="summary-item">
+            <div class="slabel">Success</div>
+            <div class="sval credit" id="filteredSuccess">131</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-head">
+        <div class="list-head-left">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          All Transactions
+        </div>
+        <span class="showing-pill" id="showingPill">Showing 8 of 131</span>
+      </div>
+
+      <div class="txn-card" id="txnList"></div>
+
+    </div>
+  </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebarOnBackdrop(event)">
+  <div class="sidebar-panel">
+    <div class="side-brand-row">
+      <div class="side-brand-left">
+        <div class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="var(--cream)" stroke="var(--cream)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <b>CASHYFY</b>
+      </div>
+      <div class="side-close" onclick="closeSidebar()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+    <div class="side-hr"></div>
+
+    <div class="side-section">
+      <p class="side-label">Main menu</p>
+      <div class="side-item" id="navTransactions" onclick="goTransactions()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+        Transactions
+      </div>
+    </div>
+
+    <div class="side-section">
+      <p class="side-label">Support</p>
+      <div class="side-item" style="cursor:pointer;" onclick="window.open('https://t.me/cashyfyy', '_blank')">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        Contact Us
+      </div>
+      <div class="side-channel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Join Channel
+      </div>
+      <div class="side-item danger" onclick="doLogout()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </div>
+    </div>
+
+    <div class="side-footer">V1.0.0 • SAMPLE UI</div>
+  </div>
+</div>
+
+<div class="toast" id="toast" style="display:none;">
+  <svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+  <span>OTP sent successfully!</span>
+  <svg class="toast-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="document.getElementById('toast').style.display='none'"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</div>
+
+<div class="overlay" id="resetOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Change password</h2>
+      <div class="modal-close" onclick="closeReset()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+    <p class="modal-sub">Update your account password below.</p>
+
+    <div class="field" style="margin-top:22px;">
+      <label for="resetCurPass">Current password</label>
+      <div class="input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6"/><path d="M15.5 7.5L18 10"/></svg>
+        <input id="resetCurPass" type="password" placeholder="Enter current password">
+        <svg class="toggle-eye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="toggleField('resetCurPass', this)"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="resetNewPass">New password</label>
+      <div class="input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6"/><path d="M15.5 7.5L18 10"/></svg>
+        <input id="resetNewPass" type="password" placeholder="Create a new password">
+        <svg class="toggle-eye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="toggleField('resetNewPass', this)"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="resetConfirmPass">Confirm password</label>
+      <div class="input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6"/><path d="M15.5 7.5L18 10"/></svg>
+        <input id="resetConfirmPass" type="password" placeholder="Re-enter new password">
+        <svg class="toggle-eye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onclick="toggleField('resetConfirmPass', this)"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+    </div>
+
+    <button class="btn" type="button" onclick="doChangePassword()">
+      Update password
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="overlay modal-center" id="txnDetailOverlay">
+  <div class="action-modal">
+    <div class="action-head">
+      <div class="action-head-title">Transaction Details</div>
+      <div class="modal-close" onclick="closeTxnDetails()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+      <div>
+        <div style="font-weight:700; font-size:15px; color:var(--ink); max-width:190px;" id="txnDetailTitle">—</div>
+        <div style="font-size:12px; color:#A9A28E; margin-top:4px;" id="txnDetailDate">—</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="txn-amt" id="txnDetailAmount" style="font-size:17px;">—</div>
+        <span class="status-pill" id="txnDetailStatus" style="margin-top:6px;">—</span>
+      </div>
+    </div>
+
+    <div class="modal-field">
+      <label style="text-transform:uppercase; font-size:10.5px; letter-spacing:1px; color:#A9A28E;">Transaction ID</label>
+      <div class="modal-input" style="display:flex; align-items:center; justify-content:space-between; color:var(--ink-soft);">
+        <span id="txnDetailId">—</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="cursor:pointer; flex-shrink:0;" onclick="copyTxnId()"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </div>
+    </div>
+
+    <div class="modal-field">
+      <label style="text-transform:uppercase; font-size:10.5px; letter-spacing:1px; color:#A9A28E;">Payment Method</label>
+      <div class="modal-input" style="display:flex; align-items:center; gap:8px; color:var(--ink); font-weight:600;" id="txnDetailMethod">—</div>
+    </div>
+
+    <div class="modal-field">
+      <label style="text-transform:uppercase; font-size:10.5px; letter-spacing:1px; color:#A9A28E;">Comment</label>
+      <div class="modal-input" style="color:var(--ink); font-weight:600;" id="txnDetailComment">—</div>
+    </div>
+
+    <div class="modal-field" style="margin-bottom:8px;">
+      <label style="text-transform:uppercase; font-size:10.5px; letter-spacing:1px; color:#A9A28E;">Closing Balance</label>
+      <div class="modal-input" style="color:var(--ink); font-weight:700; font-family:'JetBrains Mono',monospace;" id="txnDetailClosing">—</div>
+    </div>
+
+    <button class="action-btn" style="background:var(--cream-dim); color:var(--ink); border:1px solid var(--line);" type="button" onclick="closeTxnDetails()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Close
+    </button>
+  </div>
+</div>
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+const SERVER = 'https://cashyfy-1.onrender.com';
+let currentUser = null;
+let allTxns = [];
+let typeFilter = 'all';
+let statusFilters = ['success','pending','failed'];
+
+// ✅ Telegram Mini App init
+if (window.Telegram && window.Telegram.WebApp) {
+  window.Telegram.WebApp.ready();
+  window.Telegram.WebApp.expand();
+}
+
+// ✅ Auto login check
+window.addEventListener('load', async function() {
+  const token = localStorage.getItem('cy_token');
+  if (token) {
+    const ok = await loadProfile(token);
+    if (ok) {
+      await loadTxns(token);
+      showTransactions();
+      return;
+    } else {
+      localStorage.removeItem('cy_token');
+    }
+  }
+  showSignin();
+});
+
+// ✅ Load profile from server
+async function loadProfile(token) {
+  try {
+    const res = await fetch(SERVER + '/web/profile', { headers: { 'x-token': token } });
+    const data = await res.json();
+    if (!data.success) return false;
+    currentUser = data;
+    updateUI();
+    return true;
+  } catch(e) { return false; }
+}
+
+// ✅ Update all UI elements
+function updateUI() {
+  if (!currentUser) return;
+  const firstName = currentUser.name.split(' ')[0];
+  const letter = firstName.charAt(0).toUpperCase();
+
+  // Avatar letters
+  document.querySelectorAll('.avatar-circle').forEach(el => el.textContent = letter);
+  const txnAvatar = document.getElementById('txnAvatarLetter');
+  if (txnAvatar) txnAvatar.textContent = letter;
+
+  // Profile name/phone
+  const nameEl = document.getElementById('profileNameHeader');
+  if (nameEl) nameEl.textContent = currentUser.name;
+  const phoneEl = document.getElementById('profilePhoneHeader');
+  if (phoneEl) phoneEl.textContent = currentUser.phone;
+
+  // Stats
+  const credit = allTxns.filter(t => t.type === 'credit').reduce((s,t) => s+t.amount, 0);
+  const debit = allTxns.filter(t => t.type === 'debit').reduce((s,t) => s+t.amount, 0);
+  const success = allTxns.filter(t => t.status === 'success').length;
+
+  const el1 = document.getElementById('statTotalCredit'); if(el1) el1.textContent = '₹' + credit.toFixed(2);
+  const el2 = document.getElementById('statTotalDebit'); if(el2) el2.textContent = '₹' + debit.toFixed(2);
+  const el3 = document.getElementById('statSuccessCount'); if(el3) el3.textContent = success;
+  const el4 = document.getElementById('statTotalTxns'); if(el4) el4.textContent = allTxns.length;
+}
+
+// ✅ Load transactions from server
+async function loadTxns(token) {
+  try {
+    const t = token || localStorage.getItem('cy_token');
+    const res = await fetch(SERVER + '/web/txns', { headers: { 'x-token': t } });
+    const data = await res.json();
+    if (data.success) {
+      allTxns = data.txns;
+      updateUI();
+      renderTxns();
+    }
+  } catch(e) {}
+}
+
+function togglePass(){
+  const input = document.getElementById('pass');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+function openReset(){ document.getElementById('resetOverlay').classList.add('open'); }
+function closeReset(){ document.getElementById('resetOverlay').classList.remove('open'); }
+
+async function doChangePassword(){
+  const cur = document.getElementById('resetCurPass').value;
+  const next = document.getElementById('resetNewPass').value;
+  const confirm = document.getElementById('resetConfirmPass').value;
+  if (!cur) { showToast('Enter your current password', 'error'); return; }
+  if (next.length < 6) { showToast('New password must be at least 6 characters', 'error'); return; }
+  if (next !== confirm) { showToast('New passwords do not match', 'error'); return; }
+  try {
+    const res = await fetch(SERVER + '/web/update-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-token': localStorage.getItem('cy_token') },
+      body: JSON.stringify({ current_password: cur, new_password: next })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('resetCurPass').value = '';
+      document.getElementById('resetNewPass').value = '';
+      document.getElementById('resetConfirmPass').value = '';
+      closeReset();
+      showToast('Password updated successfully!');
+    } else { showToast(data.error || 'Error updating password', 'error'); }
+  } catch(e) { showToast('Server error', 'error'); }
+}
+
+function hideAllScreens(){
+  ['signinScreen','transactionsScreen'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+
+function showSignin(){
+  hideAllScreens();
+  document.getElementById('signinScreen').style.display = 'flex';
+  window.scrollTo(0,0);
+}
+
+function showTransactions(){
+  hideAllScreens();
+  document.getElementById('transactionsScreen').style.display = 'flex';
+  window.scrollTo(0,0);
+  renderTxns();
+}
+
+async function doSignIn(){
+  const phone = document.getElementById('phone').value.trim();
+  const password = document.getElementById('pass').value;
+  if (!phone || !password) { showToast('Enter phone number and password', 'error'); return; }
+  if (!/^[6-9]\d{9}$/.test(phone)) { showToast('Enter valid 10 digit number', 'error'); return; }
+
+  const btn = document.querySelector('#signinScreen .btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Signing in...'; }
+
+  try {
+    const res = await fetch(SERVER + '/web/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, password })
+    });
+    const data = await res.json();
+    if (data.success) {
+      localStorage.setItem('cy_token', data.token);
+      await loadProfile(data.token);
+      await loadTxns(data.token);
+      showToast('Signed in successfully!');
+      setTimeout(showTransactions, 600);
+    } else {
+      showToast(data.error || 'Login failed', 'error');
+    }
+  } catch(e) { showToast('Server error. Try again.', 'error'); }
+
+  if (btn) { btn.disabled = false; btn.innerHTML = 'Sign in <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>'; }
+}
+
+function showToast(message, type){
+  const toast = document.getElementById('toast');
+  toast.querySelector('span').textContent = message;
+  toast.classList.toggle('error', type === 'error');
+  toast.style.display = 'flex';
+  clearTimeout(toast._hideTimeout);
+  toast._hideTimeout = setTimeout(() => { toast.style.display = 'none'; }, 3500);
+}
+
+function toggleField(id, iconEl){
+  const input = document.getElementById(id);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function openSidebar(){ document.getElementById('sidebarOverlay').classList.add('open'); }
+function closeSidebar(){ document.getElementById('sidebarOverlay').classList.remove('open'); }
+function closeSidebarOnBackdrop(e){ if(e.target.id === 'sidebarOverlay') closeSidebar(); }
+
+function goTransactions(){
+  closeSidebar();
+  hideAllScreens();
+  document.getElementById('transactionsScreen').style.display = 'flex';
+  window.scrollTo(0,0);
+  renderTxns();
+}
+
+async function doLogout(){
+  try {
+    await fetch(SERVER + '/web/logout', { method: 'POST', headers: { 'x-token': localStorage.getItem('cy_token') } });
+  } catch(e) {}
+  localStorage.removeItem('cy_token');
+  currentUser = null;
+  allTxns = [];
+  closeSidebar();
+  closeProfileMenus();
+  showToast('Logged out successfully');
+  setTimeout(showSignin, 900);
+}
+
+function closeProfileMenus(){ document.querySelectorAll('.profile-menu').forEach(m => m.classList.remove('open')); }
+function toggleProfileMenu(avatarEl){
+  const menu = avatarEl.nextElementSibling;
+  const wasOpen = menu.classList.contains('open');
+  closeProfileMenus();
+  if(!wasOpen) menu.classList.add('open');
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.avatar-wrap')) closeProfileMenus();
+});
+
+function setTypeFilter(type){
+  typeFilter = type;
+  ['typeAll','typeCredit','typeDebit'].forEach(id => document.getElementById(id).classList.remove('active'));
+  const map = { all:'typeAll', credit:'typeCredit', debit:'typeDebit' };
+  document.getElementById(map[type]).classList.add('active');
+  renderTxns();
+}
+
+function setStatusFilter(status){
+  const idx = statusFilters.indexOf(status);
+  if(idx === -1) statusFilters.push(status);
+  else statusFilters.splice(idx, 1);
+  const map = { success:'statusSuccess', pending:'statusPending', failed:'statusFailed' };
+  Object.keys(map).forEach(key => {
+    document.getElementById(map[key]).classList.toggle('active', statusFilters.includes(key));
+  });
+  renderTxns();
+}
+
+function resetFilters(){
+  typeFilter = 'all';
+  statusFilters = ['success','pending','failed'];
+  ['typeAll','typeCredit','typeDebit'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('typeAll').classList.add('active');
+  ['statusSuccess','statusPending','statusFailed'].forEach(id => document.getElementById(id).classList.add('active'));
+  document.getElementById('txnSearch').value = '';
+  document.getElementById('txnMonth').value = '';
+  renderTxns();
+}
+
+function exportCsv(){ showToast('Export started — check your downloads'); }
+
+function statusIconSvg(status){
+  if(status === 'success') return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  if(status === 'pending') return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
+}
+
+function renderTxns(){
+  const search = (document.getElementById('txnSearch') ? document.getElementById('txnSearch').value : '').toLowerCase();
+  const month = document.getElementById('txnMonth') ? document.getElementById('txnMonth').value : '';
+
+  const filtered = allTxns.filter(t => {
+    if(typeFilter !== 'all' && t.type !== typeFilter) return false;
+    if(!statusFilters.includes(t.status)) return false;
+    if(search && !t.title.toLowerCase().includes(search) && !(t.sub||'').toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  const list = document.getElementById('txnList');
+  if(!list) return;
+
+  if(filtered.length === 0){
+    list.innerHTML = '<div class="txn-empty"><div class="txn-empty-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><p class="te-title">No transactions found</p><p class="te-sub">Try adjusting your filters</p></div>';
+  } else {
+    list.innerHTML = filtered.map(t => `
+      <div class="txn-row" onclick="openTxnDetails('${t.id}')" style="cursor:pointer;">
+        <div class="txn-icon ${t.type === 'credit' ? 'in' : 'out'}">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            ${t.type === 'credit' ? '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>' : '<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>'}
+          </svg>
+        </div>
+        <div class="txn-mid">
+          <div class="txn-title">${t.title}</div>
+          <div class="txn-sub">${t.sub || t.date || ''}</div>
+        </div>
+        <div class="txn-right">
+          <div class="txn-amt ${t.type === 'credit' ? 'in' : 'out'}">${t.type === 'credit' ? '+' : '-'}₹${t.amount.toFixed(2)}</div>
+          <span class="status-pill flat ${t.status}">${statusIconSvg(t.status)} ${t.status.charAt(0).toUpperCase()+t.status.slice(1)}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  const creditTotal = filtered.filter(t => t.type === 'credit').reduce((s,t) => s+t.amount, 0);
+  const debitTotal = filtered.filter(t => t.type === 'debit').reduce((s,t) => s+t.amount, 0);
+  const successCount = filtered.filter(t => t.status === 'success').length;
+
+  const fc = document.getElementById('filteredCredit'); if(fc) fc.textContent = '₹'+creditTotal.toFixed(2);
+  const fd = document.getElementById('filteredDebit'); if(fd) fd.textContent = '₹'+debitTotal.toFixed(2);
+  const fco = document.getElementById('filteredCount'); if(fco) fco.textContent = filtered.length;
+  const fs = document.getElementById('filteredSuccess'); if(fs) fs.textContent = successCount;
+  const sp = document.getElementById('showingPill'); if(sp) sp.textContent = 'Showing ' + filtered.length + ' of ' + allTxns.length;
+}
+
+const methodInfo = {
+  bank: { label:'Bank Transfer', icon:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><polygon points="12 2 22 8 2 8"/></svg>' },
+  upi: { label:'UPI', icon:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>' },
+  cashback: { label:'Cashback', icon:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v16"/></svg>' }
+};
+
+let currentTxnId = null;
+
+function openTxnDetails(id){
+  const t = allTxns.find(x => x.id === id);
+  if(!t) return;
+  currentTxnId = id;
+  document.getElementById('txnDetailTitle').textContent = t.title;
+  document.getElementById('txnDetailDate').textContent = t.date || '';
+  document.getElementById('txnDetailAmount').textContent = (t.type === 'credit' ? '+' : '-') + '₹' + t.amount.toFixed(2);
+  document.getElementById('txnDetailAmount').className = 'txn-amt ' + (t.type === 'credit' ? 'in' : 'out');
+  document.getElementById('txnDetailStatus').className = 'status-pill ' + t.status;
+  document.getElementById('txnDetailStatus').innerHTML = statusIconSvg(t.status) + ' ' + t.status.charAt(0).toUpperCase() + t.status.slice(1);
+  document.getElementById('txnDetailId').textContent = t.id;
+  const m = methodInfo[t.method] || methodInfo.cashback;
+  document.getElementById('txnDetailMethod').innerHTML = m.icon + ' ' + m.label;
+  document.getElementById('txnDetailComment').textContent = t.comment || '—';
+  document.getElementById('txnDetailClosing').textContent = t.closing || '—';
+  document.getElementById('txnDetailOverlay').classList.add('open');
+}
+
+function closeTxnDetails(){ document.getElementById('txnDetailOverlay').classList.remove('open'); }
+
+function copyTxnId(){
+  if(currentTxnId){ navigator.clipboard.writeText(currentTxnId).catch(() => {}); }
+  showToast('Transaction ID copied!');
+}
+</script>
+</body>
+</html>
