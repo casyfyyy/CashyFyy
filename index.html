@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<script>
+const offerMap = {
+  'WV': 'offers/WV.html',
+  'PB': 'offers/PB.html',
+  'BR': 'offers/BR.html',
+  'JS': 'offers/JS.html',
+  'FR': 'offers/FR.html',
+  'IG': 'offers/IG.html',
+  'ST': 'offers/ST.html'
+};
+
+const parts = window.location.pathname.split('/').filter(Boolean);
+const section = parts[0];
+const slug = decodeURIComponent(parts[1] || '');
+const source = new URLSearchParams(window.location.search).get('source') || null;
+
+function loadFile(file) {
+  fetch('/' + file)
+    .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+    .then(html => { document.open(); document.write(html); document.close(); })
+    .catch(() => showPaused());
+}
+
+function showPaused() {
+  document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#111;"><div style="text-align:center;color:#fff;font-family:sans-serif;"><h2 style="font-size:22px;margin-bottom:8px;">Offer Temporarily Paused</h2><p style="color:#888;">Please check back soon.</p></div></div>';
+}
+
+if (section === 'offer') {
+  if (slug && offerMap[slug]) {
+    loadFile(offerMap[slug]);
+  } else {
+    showPaused();
+  }
+} else if (section === 'refer') {
+  loadFile('refer.html');
+} else if (section === 'tracker') {
+  loadFile('tracker.html');
+} else {
+  showPaused();
+}
+</script>
+</body>
+</html>
