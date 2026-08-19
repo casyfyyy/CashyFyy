@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Waves - CashyFy ⚡</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -14,11 +14,11 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
 .pause-card { width:320px; background:#fffdf7; border-radius:35px; padding:85px 25px 40px; text-align:center; position:relative; box-shadow:0 15px 35px rgba(0,0,0,0.14); }
 .pause-icon { position:absolute; top:-42px; left:50%; transform:translateX(-50%); width:100px; height:100px; border-radius:50%; background:#f0dfae; display:flex; justify-content:center; align-items:center; box-shadow:0 5px 15px rgba(0,0,0,0.18); }
 .pause-icon .bar { width:8px; height:42px; background:#1c1c1c; border-radius:20px; margin:0 8px; }
-.pause-title { font-family:'Poppins',sans-serif; font-size:15px; font-weight:800; color:#111; margin-bottom:28px; }
+.pause-title { font-family:'Poppins',sans-serif; font-size:15px; font-weight:800; line-height:1.2; color:#111; margin-bottom:28px; }
 .pause-text { font-size:12px; line-height:1.8; color:#9d9d9d; font-weight:600; }
 .header { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
 .app-icon { width:64px; height:64px; border-radius:16px; overflow:hidden; flex-shrink:0; }
-.header-text h1 { font-family:'Poppins',sans-serif; font-size:22px; font-weight:800; color:#1a1a1a; }
+.header-text h1 { font-family:'Poppins',sans-serif; font-size:22px; font-weight:800; letter-spacing:0.3px; color:#1a1a1a; }
 .header-text p { font-size:13px; color:#8a8a8a; font-weight:600; }
 .cashback-box { background:linear-gradient(135deg,#1c1c1c,#3a3a3a); border-radius:18px; padding:20px; margin-bottom:20px; position:relative; overflow:hidden; }
 .cashback-box::after { content:''; position:absolute; right:-20px; top:-20px; width:120px; height:120px; background:rgba(245,230,200,0.08); border-radius:50%; }
@@ -29,7 +29,7 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
 .badge { display:flex; align-items:center; gap:4px; font-size:12px; font-weight:700; color:#f5e6c8; }
 .badge::before { content:'✓'; font-weight:900; color:#e8c97a; }
 .form-label { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:10px; }
-.phone-input { width:100%; padding:14px 18px; border:2px solid #ece3cc; border-radius:14px; font-size:15px; font-family:'Nunito',sans-serif; font-weight:700; color:#1a1a1a; outline:none; transition:border-color 0.2s; background:#fbf7ec; }
+.phone-input { width:100%; padding:14px 18px; border:2px solid #ece3cc; border-radius:14px; font-size:16px; font-family:'Nunito',sans-serif; font-weight:700; color:#1a1a1a; outline:none; transition:border-color 0.2s; background:#fbf7ec; }
 .phone-input:focus { border-color:#1c1c1c; background:#fff; }
 .phone-input::placeholder { color:#bbb; font-weight:600; }
 .submit-btn { width:100%; padding:16px; background:linear-gradient(135deg,#1c1c1c,#3a3a3a); color:#fdf6e3; border:none; border-radius:14px; font-size:16px; font-weight:800; font-family:'Poppins',sans-serif; cursor:pointer; letter-spacing:1px; transition:all 0.2s; box-shadow:0 4px 16px rgba(0,0,0,0.3); margin-top:12px; }
@@ -48,6 +48,7 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
 .toast.show { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
 .toast-icon { width:24px; height:24px; border-radius:50%; background:#1c1c1c; color:#fdf6e3; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; flex-shrink:0; }
 .hidden { display:none; }
+.form-label i, .steps-title i { font-size:14px; }
 </style>
 </head>
 <body>
@@ -55,7 +56,7 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
 <div id="formCard" class="main-card" style="display:none;">
   <div class="header">
     <div class="app-icon">
-      <img src="YOUR_OFFER_ICON_URL" style="width:100%;height:100%;object-fit:cover;">
+      <img src="https://i.ibb.co/DfmhrN9x/images.jpg" style="width:100%;height:100%;object-fit:cover;">
     </div>
     <div class="header-text">
       <h1>Waves</h1>
@@ -64,7 +65,7 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
   </div>
   <div class="cashback-box">
     <div class="cashback-label">TOTAL CASHBACK</div>
-    <div class="cashback-amount" id="cashbackAmount"><span>₹</span><span id="cashbackVal">3</span></div>
+    <div class="cashback-amount" id="cashbackAmount"><span>₹</span>3</div>
     <div class="badges">
       <div class="badge">Instant</div>
       <div class="badge">Guaranteed</div>
@@ -76,22 +77,29 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
   <div class="error-msg" id="errorMsg"><i class="fa-solid fa-triangle-exclamation"></i><span>Please enter a valid 10 digit number!</span></div>
   <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">SUBMIT</button>
   <div class="divider"></div>
-  <div class="steps-title"><i class="fa-solid fa-clock"></i> How to complete?</div>
+  <div class="steps-title"><i class="fa-solid fa-clock"></i> How to complete this offer?</div>
   <div class="step"><div class="step-num">1</div><div class="step-text">Enter Your Wallet Number & Submit.</div></div>
-  <div class="step"><div class="step-num">2</div><div class="step-text">Download & Register on Waves App.</div></div>
-  <div class="step"><div class="step-num">3</div><div class="step-text">Get <span class="highlight" id="highlightAmt">₹3</span> Cashback in Your Wallet.</div></div>
-  <div class="powered">Powered by <span>CASHYFY ⚡</span></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Install & Register Waves App.</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">Done You Will Get <span class="highlight" id="highlightAmt">₹3</span> Cashback in Your Wallet.</div></div>
+  <div class="powered">Powered by <span>CashyFy ⚡</span></div>
 </div>
 
 <div id="pausedCard" class="hidden pause-card">
-  <div class="pause-icon"><div class="bar"></div><div class="bar"></div></div>
+  <div class="pause-icon">
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
   <div class="pause-title">Waves Temporarily Paused</div>
-  <div class="pause-text">This offer is currently unavailable.<br>Please check back soon.</div>
+  <div class="pause-text">
+    This offer is currently unavailable.<br>
+    It will be live again shortly.<br>
+    Please check back soon.
+  </div>
 </div>
 
 <div id="toastMessage" class="toast">
   <span class="toast-icon"><i class="fa-solid fa-check"></i></span>
-  <span>Redirecting you now...</span>
+  <span>Success! Redirecting you now...</span>
 </div>
 
 <script>
@@ -100,20 +108,14 @@ const AFFILIATE_LINK = 'YOUR_WAVES_AFFILIATE_LINK_HERE';
 const SERVER = 'https://cashyfy-1.onrender.com';
 
 function getRefCode() {
-  return new URLSearchParams(window.location.search).get('source') || null;
+  const params = new URLSearchParams(window.location.search);
+  return params.get('source') || null;
 }
 
-async function checkReferAmount() {
-  const code = getRefCode();
-  if (!code) return;
-  try {
-    const res = await fetch(`${SERVER}/refer/amount?code=${encodeURIComponent(code)}`);
-    const data = await res.json();
-    if (data.success && data.user_payout > 0) {
-      document.getElementById('cashbackVal').innerText = data.user_payout;
-      document.getElementById('highlightAmt').innerText = `₹${data.user_payout}`;
-    }
-  } catch(e) {}
+function generateClickId(phone) {
+  const ts = Date.now().toString().slice(-6);
+  const rand = Math.random().toString(36).slice(2, 5).toUpperCase();
+  return `${phone}${ts}${rand}`;
 }
 
 async function checkOfferStatus() {
@@ -132,15 +134,20 @@ async function checkOfferStatus() {
   }
 }
 
-checkOfferStatus();
-
-function generateClickId(phone) {
-  const ts = Date.now().toString().slice(-6);
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let rand = '';
-  for (let i = 0; i < 3; i++) rand += chars.charAt(Math.floor(Math.random() * chars.length));
-  return `${phone}${ts}${rand}`;
+async function checkReferAmount() {
+  const code = getRefCode();
+  if (!code) return;
+  try {
+    const res = await fetch(`${SERVER}/refer/amount?code=${encodeURIComponent(code)}`);
+    const data = await res.json();
+    if (data.success && data.user_payout > 0) {
+      document.getElementById('cashbackAmount').innerHTML = `<span>₹</span>${data.user_payout}`;
+      document.getElementById('highlightAmt').innerText = `₹${data.user_payout}`;
+    }
+  } catch(e) {}
 }
+
+checkOfferStatus();
 
 async function saveClick(phone) {
   const clickId = generateClickId(phone);
@@ -148,7 +155,12 @@ async function saveClick(phone) {
     const res = await fetch(`${SERVER}/click`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ click_id: clickId, phone, offer_name: OFFER_NAME, refer_code: getRefCode() })
+      body: JSON.stringify({
+        click_id: clickId,
+        offer_name: OFFER_NAME,
+        phone: phone,
+        refer_code: getRefCode()
+      })
     });
     if (res.ok) return clickId;
     return null;
@@ -156,32 +168,44 @@ async function saveClick(phone) {
 }
 
 async function handleSubmit() {
-  const phone = document.getElementById('phoneInput').value.trim();
-  const submitBtn = document.getElementById('submitBtn');
+  const phoneInput = document.getElementById('phoneInput');
+  const phone = phoneInput.value.trim();
   const errorMsg = document.getElementById('errorMsg');
+  const submitBtn = document.getElementById('submitBtn');
+
   if (submitBtn.disabled) return;
-  if (!/^[6-9]\d{9}$/.test(phone)) { errorMsg.style.display = 'flex'; return; }
+
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    errorMsg.style.display = 'flex';
+    return;
+  }
   errorMsg.style.display = 'none';
   submitBtn.innerText = 'Please wait...';
   submitBtn.disabled = true;
+
   const clickId = await saveClick(phone);
   if (!clickId) {
-    errorMsg.querySelector('span').innerText = 'Please submit again!';
-    errorMsg.style.display = 'flex';
     submitBtn.innerText = 'SUBMIT';
     submitBtn.disabled = false;
+    errorMsg.querySelector('span').innerText = 'Please submit again!';
+    errorMsg.style.display = 'flex';
     return;
   }
+
   const affiliateLink = AFFILIATE_LINK + '&p1=' + encodeURIComponent(clickId);
   document.getElementById('toastMessage').classList.add('show');
   setTimeout(() => { window.location.href = affiliateLink; }, 400);
 }
 
-document.getElementById('phoneInput').addEventListener('keypress', e => { if (e.key === 'Enter') handleSubmit(); });
+document.getElementById('phoneInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') handleSubmit();
+});
 document.getElementById('phoneInput').addEventListener('input', function() {
   this.value = this.value.replace(/\D/g, '');
+  // Bug fix: user typing shuru kare to purana error message hat jaye
   document.getElementById('errorMsg').style.display = 'none';
 });
 </script>
 </body>
-  </html>
+</html>
+
