@@ -1,9 +1,9 @@
 {
   "rewrites": [
-    { "source": "/offer/:slug", "destination": "/router.html" },
-    { "source": "/refer/:slug", "destination": "/router.html" },
-    { "source": "/tracker/user/:slug", "destination": "/router.html" },
-    { "source": "/tracker", "destination": "/router.html" },
+    { "source": "/offer/:slug", "destination": "/index.html" },
+    { "source": "/refer/:slug", "destination": "/index.html" },
+    { "source": "/tracker/user/:slug", "destination": "/index.html" },
+    { "source": "/tracker", "destination": "/index.html" },
     { "source": "/transactions", "destination": "/transactions.html" },
     { "source": "/admin", "destination": "/admin.html" }
   ]
