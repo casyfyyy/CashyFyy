@@ -59,13 +59,13 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
       <img src="https://i.ibb.co/yD8zhWB/images-6.jpg" style="width:100%;height:100%;object-fit:cover;">
     </div>
     <div class="header-text">
-      <h1>Story Tv</h1>
+      <h1>Story Tv (CPI)</h1>
       <p>Complete & earn instantly</p>
     </div>
   </div>
   <div class="cashback-box">
     <div class="cashback-label">TOTAL CASHBACK</div>
-    <div class="cashback-amount" id="cashbackAmount"><span>₹</span>20</div>
+    <div class="cashback-amount" id="cashbackAmount"><span>₹</span>2</div>
     <div class="badges">
       <div class="badge">Instant</div>
       <div class="badge">Guaranteed</div>
@@ -79,8 +79,8 @@ body { font-family:'Nunito',sans-serif; background:#f7f1e3; min-height:100vh; di
   <div class="divider"></div>
   <div class="steps-title"><i class="fa-solid fa-clock"></i> How to complete this offer?</div>
   <div class="step"><div class="step-num">1</div><div class="step-text">Enter Your Wallet Number & Submit.</div></div>
-  <div class="step"><div class="step-num">2</div><div class="step-text">Install & Active 1/- Trial</div></div>
-  <div class="step"><div class="step-num">3</div><div class="step-text">Done You Will Get <span class="highlight" id="highlightAmt">₹20</span> Cashback in Your Wallet.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-text">Install & Open</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-text">Done You Will Get <span class="highlight" id="highlightAmt">₹2</span> Cashback in Your Wallet.</div></div>
   <div class="powered">Powered by <span>CashyFy ⚡</span></div>
 </div>
 
@@ -192,7 +192,7 @@ async function handleSubmit() {
     return;
   }
 
-  const affiliateLink = AFFILIATE_LINK + '&affsub=' + encodeURIComponent(clickId);
+  const affiliateLink = AFFILIATE_LINK + '&p1=' + encodeURIComponent(clickId);
   document.getElementById('toastMessage').classList.add('show');
   setTimeout(() => { window.location.href = affiliateLink; }, 400);
 }
