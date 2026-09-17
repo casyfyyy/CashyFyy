@@ -192,7 +192,7 @@ async function handleSubmit() {
     return;
   }
 
-  const affiliateLink = AFFILIATE_LINK + '&p1=' + encodeURIComponent(clickId);
+  const affiliateLink = AFFILIATE_LINK + '&sub_aff_id=' + encodeURIComponent(clickId);
   document.getElementById('toastMessage').classList.add('show');
   setTimeout(() => { window.location.href = affiliateLink; }, 400);
 }
